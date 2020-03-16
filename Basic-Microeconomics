@@ -1,0 +1,46 @@
+import random
+import sympy as sy
+import math
+def discriminant(a,b,c):
+    return b*b - 4*a*c
+def equation(a,b,c,dis):
+    return ((-b + math.sqrt(b*b - 4*a*c))/(2*a))
+def findequilibrium(dis,a,b,c):
+    demand = a - b*(dis**c)
+    #print(demand)
+    return demand
+
+
+class d_and_s():
+    def demand(self):
+        a = 100  # random.randint(50,60)
+        b = 5  # random.randint(1,10)
+        c = 2  # random.randint(1,3)
+        demand_constant = a
+        demand_coef = -b
+        demand_exp = c
+        return(demand_constant,demand_coef,demand_exp)
+    def supply(self):
+        a = 0  # random.randint(50,60)
+        b = 5  # random.randint(1,10)
+        c = 2  # random.randint(1,3)
+        supply_constant = a
+        supply_coef = b
+        supply_exp = c
+        return (supply_constant,supply_coef,supply_exp)
+    def equilibrium(self,demand_constant,demand_coef,demand_exp,supply_constant,supply_coef,supply_exp):
+        dis = discriminant((supplycoef-demand_coef),(0),(supplyconstant-demand_constant))
+        if(dis>=0):
+            price = equation((supplycoef-demand_coef),(0),(supplyconstant-demand_constant),dis)
+            quantity = findequilibrium(price,(supplycoef-demand_coef),(0),(supplyconstant-demand_constant))
+            print(price,quantity)
+        else:
+            print("It is not a cool equation")
+            price ="price"
+            quantity = "Quantity"
+        return price,quantity
+solution = d_and_s()
+demandconstant,demandcoef,demand_exp = solution.demand()
+supplyconstant,supplycoef,supply_exp = solution.supply()
+equilibrium = solution.equilibrium(demandconstant,demandcoef,demand_exp,supplyconstant,supplycoef,supply_exp)
+print(equilibrium)
